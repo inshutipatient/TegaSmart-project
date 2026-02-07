@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TegaSmart - Cashless Transport</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Icons -->
+    <link rel="icon" href="assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">TegaSmart 🚌</h1>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="pages/dashboard.html">Dashboard</a>
+                <a href="pages/scanner.html">Client Signup/login</a>
+                <a href="pages/login.html">staff login</a>
+            </div>
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="hero">
+            <h2>Cashless Transport Made Simple</h2>
+            <p>Tap your RFID card, ride the bus. No cash needed.</p>
+            <div class="cta-buttons">
+                <a href="pages/login.html" class="btn btn-primary">Get Started</a>
+                <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <!--<div class="action-card" onclick="location.href='pages/scanner.html'">
+                <div class="action-icon">📱</div>
+                <h3>Scan Card</h3>
+                <p>Test scanner simulation</p>
+            </div>-->
+            <div class="action-card" onclick="buyTicket()">
+                <div class="action-icon">🎫</div>
+                <h3>Buy Ticket</h3>
+                <p>Kigali → Huye</p>
+            </div>
+            <div class="action-card" onclick="location.href='pages/dashboard.html'">
+                <div class="action-icon">📊</div>
+                <h3>Dashboard</h3>
+                <p>View tickets & history</p>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="steps">
+            <h2>How TegaSmart Works</h2>
+            <div class="step">
+                <span class="step-number">1</span>
+                <h3>Register & Link Card</h3>
+                <p>Create account and link your RFID card</p>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <h3>Buy Ticket via MoMo</h3>
+                <p>Purchase ticket using MTN Mobile Money</p>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <h3>Tap & Ride</h3>
+                <p>Tap your card on bus scanner and board</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 TegaSmart. All rights reserved.</p>
+        <p>PWA: <span id="pwa-status">Checking...</span></p>
+        <button id="installBtn" class="btn-install" style="display:none;">📱 Install App</button>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

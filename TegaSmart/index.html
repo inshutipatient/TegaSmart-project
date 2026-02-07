@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TegaSmart</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/auth.css">
+    <link rel="manifest" href="../manifest.json">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <!-- Header -->
+        <header class="auth-header">
+            <h1>🚌 TegaSmart</h1>
+            <p>Cashless Transport System</p>
+        </header>
+
+        <!-- Role Selection -->
+        <div class="role-selection">
+            <h2>Login As</h2>
+            <p class="subtitle">Choose your role to continue</p>
+            
+            <div class="role-cards">
+                <!-- Passenger Card -->
+                <div class="role-card passenger">
+                    <div class="role-icon">👤</div>
+                    <h3>Passenger</h3>
+                    <p>Buy tickets, manage your account, view travel history</p>
+                    <div class="role-features">
+                        <span>🎫 Buy Tickets</span>
+                        <span>📱 MTN MoMo Payment</span>
+                        <span>📊 View History</span>
+                        <span>📞 Call support</span>
+
+                    </div>
+                    <button class="role-btn"> <a href="./pages/client-login.html">Login as Passenger</a></button>
+                </div>
+
+                <!-- Staff Card -->
+                <div class="role-card staff">
+                    <div class="role-icon">👨‍💼</div>
+                    <h3>Staff / Driver</h3>
+                    <p>Manage bus operations, validate tickets, view reports</p>
+                    <div class="role-features">
+                        <span>✅ Validate Tickets</span>
+                        <span>🚌 Bus Management</span>
+                        <span>📈 View Reports</span>
+                    </div>
+                    <button class="role-btn"> <a href="./pages/staff-login.html">Login as Staff</a></button>
+                </div>
+            </div>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+                <p><a href="../index.html">← Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

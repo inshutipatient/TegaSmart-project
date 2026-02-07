@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TegaSmart</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="manifest" href="../manifest.json">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">TegaSmart 🚌</h1>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="scanner.html">Scanner</a>
+                <a href="login.html">Logout</a>
+            </div>
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h2>Your Dashboard</h2>
+        <div id="userInfo" class="card"></div>
+        <div id="ticketsList" class="tickets-container"></div>
+    </main>
+
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
