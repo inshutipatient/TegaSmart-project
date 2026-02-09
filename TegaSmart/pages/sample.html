@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login - TegaSmart</title>
+    <link rel="stylesheet" href="../assets/css/12.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <!-- Back Button -->
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="auth-wrapper">
+            <!-- Left Side - Staff Info -->
+            <div class="auth-info" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                <div class="logo-large">
+                    <i class="fas fa-user-tie"></i>
+                    <h1>TegaSmart Staff</h1>
+                </div>
+                <h2>Staff Portal</h2>
+                <p>Access staff tools for bus operations, ticket validation, and station management.</p>
+                
+                <div class="features-list">
+                    <div class="feature">
+                        <i class="fas fa-clipboard-check"></i>
+                        <div>
+                            <h4>Validate Tickets</h4>
+                            <p>Scan and validate passenger tickets</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bus"></i>
+                        <div>
+                            <h4>Bus Management</h4>
+                            <p>Monitor bus schedules and routes</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <h4>Reports & Analytics</h4>
+                            <p>View passenger statistics and revenue</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Secure Access</h4>
+                            <p>Role-based permissions and security</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Staff Members</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100+</h3>
+                        <p>Buses</p>
+                    </div>
+                    <div class="stat">
+                        <h3>24/7</h4>
+                        <p>Operations</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Staff Login Form -->
+            <div class="auth-form-side">
+                <!-- Staff Login Form -->
+                <div class="auth-form-container active">
+                    <div class="form-header">
+                        <div class="staff-avatar">
+                          <div class="user-avatar staff-avatar">👨‍💼</div>
+                        </div>
+                        <h2>Staff Login</h2>
+                        <p>Enter your staff credentials to access the portal</p>
+                    </div>
+
+                    <form id="staffLoginForm" class="auth-form">
+                        <!-- Staff ID -->
+                        <div class="form-group">
+                            <label for="staffId">
+                                <i class="fas fa-id-card"></i> Staff ID
+                            </label>
+                            <input 
+                                type="text" 
+                                id="staffId" 
+                                placeholder="STAFF-XXXXX" 
+                                pattern="STAFF-[0-9]{5}"
+                                required
+                            >
+                            <small class="input-hint">Format: STAFF- followed by 5 digits</small>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="staffPassword">
+                                <i class="fas fa-lock"></i> Password
+                            </label>
+                            <div class="password-container">
+                                <input 
+                                    type="password" 
+                                    id="staffPassword" 
+                                    placeholder="Enter your password" 
+                                    minlength="6"
+                                    required
+                                >
+                                <button type="button" class="toggle-password" onclick="togglePassword('staffPassword')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Role Selection -->
+                        <div class="form-group">
+                            <label for="staffRole">
+                                <i class="fas fa-user-tag"></i> Role
+                            </label>
+                            <select id="staffRole" required>
+                                <option value="">Select your role</option>
+                                <option value="driver">Bus Driver</option>
+                                <option value="conductor">Conductor</option>
+                                <option value="admin">Administrator</option>
+                                <option value="manager">Station Manager</option>
+                                <option value="support">Support Staff</option>
+                                <option value="supervisor">Operations Supervisor</option>
+                            </select>
+                        </div>
+
+                        <!-- Station/Bus Assignment -->
+                        <div class="form-group">
+                            <label for="station">
+                                <i class="fas fa-map-marker-alt"></i> Station / Bus
+                            </label>
+                            <select id="station" required>
+                                <option value="">Select station or bus</option>
+                                <optgroup label="Main Terminals">
+                                    <option value="nyabugogo">Nyabugogo Terminal</option>
+                                    <option value="kigali">Kigali City Center</option>
+                                    <option value="huye">Huye Station</option>
+                                    <option value="musanze">Musanze Terminal</option>
+                                    <option value="rubavu">Rubavu Station</option>
+                                </optgroup>
+                                <optgroup label="Bus Assignment">
+                                    <option value="bus-101">Bus KA 101 (Kigali → Huye)</option>
+                                    <option value="bus-102">Bus KA 102 (Kigali → Musanze)</option>
+                                    <option value="bus-103">Bus KA 103 (Kigali → Rubavu)</option>
+                                    <option value="bus-201">Bus KA 201 (Huye → Kigali)</option>
+                                    <option value="bus-202">Bus KA 202 (Musanze → Kigali)</option>
+                                </optgroup>
+                                <optgroup label="Other Locations">
+                                    <option value="maintenance">Maintenance Depot</option>
+                                    <option value="headquarters">Headquarters Office</option>
+                                    <option value="control-center">Control Center</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <!-- Quick PIN (Optional) -->
+                        <div class="form-group">
+                            <label for="pin">
+                                <i class="fas fa-key"></i> Quick PIN (Optional)
+                            </label>
+                            <div class="pin-container">
+                                <input 
+                                    type="password" 
+                                    id="pin" 
+                                    placeholder="4-digit PIN" 
+                                    maxlength="4"
+                                    pattern="[0-9]{4}"
+                                    inputmode="numeric"
+                                >
+                                <small class="input-hint">Set a 4-digit PIN for quick access</small>
+                            </div>
+                        </div>
+
+                        <!-- Remember Device -->
+                        <div class="form-options">
+                            <label class="checkbox">
+                                <input type="checkbox" id="rememberDevice">
+                                <span>Remember this device</span>
+                            </label>
+                            <a href="#" class="forgot-link" onclick="showStaffForgotPassword()">
+                                Forgot Password?
+                            </a>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit" class="btn btn-primary btn-block btn-staff-login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span class="btn-text">Login to Staff Portal</span>
+                            <div class="spinner" style="display:none;"></div>
+                        </button>
+
+                        <!-- Quick Login Buttons -->
+                        <div class="quick-login-section">
+                            <h4><i class="fas fa-bolt"></i> Quick Access</h4>
+                            <div class="quick-login-buttons">
+                                <button type="button" class="quick-login-btn driver" onclick="quickStaffLogin('driver')">
+                                    <i class="fas fa-bus"></i> Driver Login
+                                </button>
+                                <button type="button" class="quick-login-btn conductor" onclick="quickStaffLogin('conductor')">
+                                    <i class="fas fa-clipboard-check"></i> Conductor Login
+                                </button>
+                                <button type="button" class="quick-login-btn admin" onclick="quickStaffLogin('admin')">
+                                    <i class="fas fa-user-cog"></i> Admin Login
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Demo Credentials -->
+                        <div class="demo-section">
+                            <h4><i class="fas fa-vial"></i> Staff Demo Accounts</h4>
+                            <div class="demo-buttons">
+                                <button type="button" class="demo-btn driver" onclick="fillStaffDemo('driver')">
+                                    <i class="fas fa-bus"></i> Driver Demo
+                                </button>
+                                <button type="button" class="demo-btn admin" onclick="fillStaffDemo('admin')">
+                                    <i class="fas fa-user-cog"></i> Admin Demo
+                                </button>
+                                <button type="button" class="demo-btn conductor" onclick="fillStaffDemo('conductor')">
+                                    <i class="fas fa-clipboard-check"></i> Conductor Demo
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Not Staff? -->
+                    <div class="auth-switch">
+                        <p>Not staff? 
+                            <a href="client-login.html" class="switch-link">
+                                <i class="fas fa-user"></i> Passenger login here
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forgot Password Modal (Staff) -->
+        <div id="staffForgotPasswordModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h3><i class="fas fa-user-shield"></i> Staff Password Reset</h3>
+                <p>Contact your administrator or enter your staff ID to request a reset</p>
+                
+                <div class="form-group">
+                    <label for="staffResetId">Staff ID</label>
+                    <input type="text" id="staffResetId" placeholder="STAFF-XXXXX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="adminCode">Administrator Code (Optional)</label>
+                    <input type="password" id="adminCode" placeholder="6-digit admin code">
+                </div>
+                
+                <div class="modal-buttons">
+                    <button class="btn btn-secondary" onclick="closeStaffForgotPasswordModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="requestStaffPasswordReset()">Request Reset</button>
+                    <button class="btn btn-warning" onclick="contactAdmin()">
+                        <i class="fas fa-phone"></i> Contact Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/staff-auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

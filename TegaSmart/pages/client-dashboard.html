@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - TegaSmart</title>
+    <link rel="stylesheet" href="../assets/css/12.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <!-- Back Button (to Home) -->
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="auth-wrapper">
+            <!-- Left Side - User Profile & Quick Stats -->
+            <div class="auth-info" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <div class="logo-large">
+                    <i class="fas fa-user-circle"></i>
+                    <h1 id="userName">Loading...</h1>
+                </div>
+                
+                <div class="user-profile">
+                    <div class="profile-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-wallet"></i>
+                            <div>
+                                <h3 id="userBalance">0 RWF</h3>
+                                <p>Current Balance</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-ticket-alt"></i>
+                            <div>
+                                <h3 id="activeTickets">0</h3>
+                                <p>Active Tickets</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-route"></i>
+                            <div>
+                                <h3 id="totalTrips">0</h3>
+                                <p>Total Trips</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RFID Card Info -->
+                <div class="card-info">
+                    <h3><i class="fas fa-id-card"></i> Your RFID Card</h3>
+                    <div class="card-display">
+                        <div class="card-chip">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="card-number">
+                            <h4 id="cardId">RFID-XXXXXXX</h4>
+                            <p>Tap to board buses</p>
+                        </div>
+                        <div class="card-status">
+                            <span class="status-badge active">Active</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-block" onclick="showLinkCardModal()">
+                        <i class="fas fa-link"></i> Link New Card
+                    </button>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="quick-links">
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                    <div class="link-grid">
+                        <button class="link-btn" onclick="buyTicket()">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Buy Ticket</span>
+                        </button>
+                        <button class="link-btn" onclick="viewHistory()">
+                            <i class="fas fa-history"></i>
+                            <span>Travel History</span>
+                        </button>
+                        <button class="link-btn" onclick="addFunds()">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Add Funds</span>
+                        </button>
+                        <button class="link-btn" onclick="showHelp()">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Dashboard Content -->
+            <div class="auth-form-side">
+                <!-- Dashboard Header -->
+                <div class="dashboard-header">
+                    <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                    <p>Welcome back! Here's your travel overview.</p>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="refreshDashboard()">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <button class="btn btn-secondary" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Active Tickets Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-ticket-alt"></i> Active Tickets</h3>
+                        <a href="#" class="view-all" onclick="viewAllTickets()">View All</a>
+                    </div>
+                    
+                    <div class="tickets-container" id="activeTicketsList">
+                        <!-- Tickets will be loaded here -->
+                        <div class="empty-state">
+                            <i class="fas fa-ticket-alt"></i>
+                            <p>No active tickets</p>
+                            <button class="btn btn-primary" onclick="buyTicket()">
+                                <i class="fas fa-plus"></i> Buy Your First Ticket
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Trips -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-history"></i> Recent Trips</h3>
+                        <a href="#" class="view-all" onclick="viewFullHistory()">View All History</a>
+                    </div>
+                    
+                    <div class="trips-container" id="recentTrips">
+                        <!-- Trips will be loaded here -->
+                        <div class="empty-state">
+                            <i class="fas fa-route"></i>
+                            <p>No trip history yet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Buy Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-bus"></i> Popular Routes</h3>
+                        <p>Quick purchase</p>
+                    </div>
+                    
+                    <div class="routes-grid">
+                        <div class="route-card" onclick="quickBuy('Kigali → Huye')">
+                            <div class="route-icon">
+                                <i class="fas fa-road"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Kigali → Huye</h4>
+                                <p>2,500 RWF</p>
+                                <small>4 hours • Every 30 min</small>
+                            </div>
+                            <button class="route-buy">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="route-card" onclick="quickBuy('Kigali → Musanze')">
+                            <div class="route-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Kigali → Musanze</h4>
+                                <p>3,000 RWF</p>
+                                <small>3 hours • Every hour</small>
+                            </div>
+                            <button class="route-buy">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="route-card" onclick="quickBuy('Kigali → Rubavu')">
+                            <div class="route-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Kigali → Rubavu</h4>
+                                <p>3,500 RWF</p>
+                                <small>4.5 hours • Every 2 hours</small>
+                            </div>
+                            <button class="route-buy">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Section -->
+                <div class="dashboard-section support-section">
+                    <h3><i class="fas fa-headset"></i> Need Help?</h3>
+                    <p>Our support team is available 24/7</p>
+                    <div class="support-options">
+                        <button class="support-btn" onclick="callSupport()">
+                            <i class="fas fa-phone"></i>
+                            <span>Call: +250 788 123 456</span>
+                        </button>
+                        <button class="support-btn" onclick="whatsappSupport()">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </button>
+                        <button class="support-btn" onclick="emailSupport()">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link Card Modal -->
+    <div id="linkCardModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3><i class="fas fa-id-card"></i> Link RFID Card</h3>
+            <p>Enter your RFID card number to link it to your account</p>
+            
+            <div class="form-group">
+                <label for="cardNumber">RFID Card Number</label>
+                <input 
+                    type="text" 
+                    id="cardNumber" 
+                    placeholder="Enter 10-12 digit card number"
+                    maxlength="12"
+                >
+                <small>Find this number on your physical card</small>
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox">
+                    <input type="checkbox" id="confirmCard">
+                    <span>I confirm this is my personal RFID card</span>
+                </label>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeLinkCardModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="linkCard()">Link Card</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buy Ticket Modal -->
+    <div id="buyTicketModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3><i class="fas fa-ticket-alt"></i> Buy Ticket</h3>
+            
+            <div class="form-group">
+                <label for="selectRoute">Select Route</label>
+                <select id="selectRoute">
+                    <option value="">Choose a route</option>
+                    <option value="kigali-huye">Kigali → Huye (2,500 RWF)</option>
+                    <option value="kigali-musanze">Kigali → Musanze (3,000 RWF)</option>
+                    <option value="kigali-rubavu">Kigali → Rubavu (3,500 RWF)</option>
+                    <option value="kigali-nyagatare">Kigali → Nyagatare (4,000 RWF)</option>
+                    <option value="huye-kigali">Huye → Kigali (2,500 RWF)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Payment Method</label>
+                <div class="payment-options">
+                    <button class="payment-option active" onclick="selectPayment('momo')">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>MTN MoMo</span>
+                    </button>
+                    <button class="payment-option" onclick="selectPayment('card')">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Card Balance</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="price-display">
+                <h4>Total: <span id="ticketPrice">0</span> RWF</h4>
+                <p>Valid for 2 hours after purchase</p>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeBuyTicketModal()">Cancel</button>
+                <button class="btn btn-success" onclick="processPayment()">
+                    <i class="fas fa-lock"></i> Pay Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

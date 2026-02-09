@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login - TegaSmart</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="manifest" href="../manifest.json">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <!-- Back Button -->
+        <a href="../index1.html" class="back-btn">← Back</a>
+
+        <!-- Staff Login Form -->
+        <div class="auth-form-container">
+            <div class="auth-header">
+                <div class="user-avatar staff-avatar">👨‍💼</div>
+                <h2>Staff Login</h2>
+                <p>Access staff dashboard and management tools</p>
+            </div>
+
+            <form id="staffLoginForm" class="auth-form">
+                <!-- Staff ID -->
+                <div class="form-group">
+                    <label for="staffId">Staff ID</label>
+                    <input 
+                        type="text" 
+                        id="staffId" 
+                        placeholder="Enter your staff ID" 
+                        required
+                        pattern="STAFF-[0-9]{5}"
+                    >
+                    <small>Format: STAFF-XXXXX</small>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="staffPassword">Password</label>
+                    <div class="password-container">
+                        <input 
+                            type="password" 
+                            id="staffPassword" 
+                            placeholder="Enter your password" 
+                            minlength="6"
+                            required
+                        >
+                        <button type="button" class="toggle-password" onclick="togglePassword('staffPassword')">👁️</button>
+                    </div>
+                </div>
+
+                <!-- Role Selection -->
+                <div class="form-group">
+                    <label for="staffRole">Role</label>
+                    <select id="staffRole" required>
+                        <option value="">Select your role</option>
+                        <option value="driver">Bus Driver</option>
+                        <option value="conductor">Conductor</option>
+                        <option value="admin">Administrator</option>
+                        <option value="manager">Station Manager</option>
+                        <option value="support">Support Staff</option>
+                    </select>
+                </div>
+
+                <!-- Station/Bus -->
+                <div class="form-group">
+                    <label for="station">Station / Bus</label>
+                    <select id="station" required>
+                        <option value="">Select station/bus</option>
+                        <option value="nyabugogo">Nyabugogo Terminal</option>
+                        <option value="kigali">Kigali City</option>
+                        <option value="huye">Huye Station</option>
+                        <option value="musanze">Musanze Terminal</option>
+                        <option value="bus-101">Bus KA 101</option>
+                        <option value="bus-102">Bus KA 102</option>
+                    </select>
+                </div>
+
+                <!-- PIN (for quick access) -->
+                <div class="form-group">
+                    <label for="pin">Quick PIN (Optional)</label>
+                    <input 
+                        type="password" 
+                        id="pin" 
+                        placeholder="4-digit PIN" 
+                        maxlength="4"
+                        pattern="[0-9]{4}"
+                        inputmode="numeric"
+                    >
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span class="btn-text">Login as Staff</span>
+                    <span class="btn-loading" style="display:none;">⏳ Verifying...</span>
+                </button>
+
+                <!-- Quick Login Options -->
+                <div class="divider">
+                    <span>Quick Access</span>
+                </div>
+
+                <div class="quick-login">
+                    <button type="button" class="quick-btn driver" onclick="quickLogin('driver')">
+                        🚌 Driver Login
+                    </button>
+                    <button type="button" class="quick-btn conductor" onclick="quickLogin('conductor')">
+                        🎫 Conductor Login
+                    </button>
+                </div>
+
+                <!-- Help & Support -->
+                <div class="auth-footer">
+                    <p>Need help? <a href="tel:+250788123456">Call Support: +250 788 123 456</a></p>
+                    <p>Not staff? <a href="client-portal.html">Passenger login here</a></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Staff Demo Credentials -->
+        <div class="demo-credentials">
+            <h4>Staff Demo Accounts:</h4>
+            <div class="demo-account" onclick="fillStaffDemo('driver')">
+                <strong>Driver:</strong> STAFF-00123 / password: driver123
+            </div>
+            <div class="demo-account" onclick="fillStaffDemo('admin')">
+                <strong>Admin:</strong> STAFF-00001 / password: admin123
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
